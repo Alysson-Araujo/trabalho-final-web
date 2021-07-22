@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt_br" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página do funcionario</title>
+</head>
+
+
+<body>
+
+    <h2>Funcionario</h2>
+
+    
+    <!--  
+    <form action="#" th:action= "@{/funcionario}" th:object="${pessoa}" method="post">
+    	<input type="text" th:fie>
+    	<input>
+    	<input>
+    	<input>
+    	<input>
+    	
+    
+    </form>
+
+<tbody>
+        <tr th:each="funcionario : ${listfuncionario}">
+            <td th:text=$funcionario.nome></td>
+            <td th:text=$funcionario.email></td>
+            <td th:text=$funcionario.telefone></td>
+            <td th:text=$funcionario.salario></td>
+            <td th:text=$funcionario.cpf></td>
+        </tr>
+    </tbody>
+    
+    -->
+    <!-- problema era no objeto tem que ser minúsculo-->
+   
+   <div id="conteudo">
+        <form id="formulario" method="POST" 
+        th:action="@{/addfuncionario}" th:object="${funcionario}">
+            <div id="formulario1">
+                <div class='field-main'>
+                    <label for="POST-Nome">Nome do funcionário</label><br>
+                    <input type="text" name='nome' id="POST-Nome" th:field="*{nome}"  required>
+                </div>
+
+                <div class='field-main'>
+                    <label for="POST-CPF">CPF do Funcionario</label><br>
+                    <input type="text" name='cpf' id="POST-CPF" th:field="*{cpf}"  required>
+                </div>
+
+                <div class='field-main'>
+                    <label for="POST-Email">Email</label><br>
+                    <input type="email" name='email' id="POST-Email" th:field="*{email}"  required>
+                </div>
+
+                <div class='field-main'>
+                    <label for="POST-Telefone">Telefone para contato </label><br>
+                    <input type="text" name='telefone' id="POST-Telefone" th:field="*{telefone}"  required>
+                </div>
+                
+                <div class='field-main'>
+                    <label for="POST-Salario">Salário do Funcionario </label><br>
+                    <input type="number" name='salario' id="POST-Salario" th:field="*{salario}"  required>
+                </div>
+
+            </div>
+            <input class="botao" type="submit" value="Enviar">
+
+        </form>
+</div>
+
+</body>
+
+</html>
