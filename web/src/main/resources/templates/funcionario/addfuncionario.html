@@ -10,7 +10,10 @@
 
 
 <body>
-
+<div th:replace="base :: navlinks"></div>
+<br>
+<br>
+<br>
     <h2>Funcionario</h2>
 
     
@@ -40,7 +43,7 @@
    
    <div id="conteudo">
         <form id="formulario" method="POST" 
-        th:action="@{/addfuncionario}" th:object="${funcionario}">
+        th:action="@{/funcionario/addfuncionario}" th:object="${funcionario}">
             <div id="formulario1">
                 <div class='field-main'>
                     <label for="POST-Nome">Nome do funcionário</label><br>
@@ -64,12 +67,12 @@
                 
                 <div class='field-main'>
                     <label for="POST-Salario">Salário do Funcionario </label><br>
-                    <input type="number" name='salario' id="POST-Salario" th:field="*{salario}"  required>
+                    <input step="0.010" type="number" name='salario' id="POST-Salario" th:field="*{salario}"  required>
                 </div>
 
             </div>
             <input class="botao" type="submit" value="Enviar">
-
+	
         </form>
 </div>
 

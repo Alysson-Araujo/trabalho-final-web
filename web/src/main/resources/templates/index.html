@@ -14,28 +14,7 @@
     <div th:fragment="base :: footer"></div>
 	
 	
-	
-	<table>
-		<thead>
-			<tr>
-			<th>Nome</th>
-			<th>Telefone</th>
-			<th>CPF</th>
-			<th>Email</th>
-			<th>Salario</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="funcionario : ${listfuncionario}">
-			<td th:text="${funcionario.nome}"></td>
-			<td th:text="${funcionario.telefone}"></td>
-			<td th:text="${funcionario.cpf}"></td>
-			<td th:text="${funcionario.email}"></td>
-			<td th:text="${funcionario.salario}"></td>
-			</tr>
-		</tbody>
-		
-	</table>
+
 </body>
 
 </html>

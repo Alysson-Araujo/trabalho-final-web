@@ -2,6 +2,7 @@ package com.application.drogaria;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -27,5 +28,10 @@ public class WebConfig implements WebMvcConfigurer {
 
 	      return bean;
 	   }
-	
+	   
+	   @GetMapping("/index")
+		public String index() {
+			return "/index";
+		}
+		
 }

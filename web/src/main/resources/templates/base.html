@@ -12,8 +12,11 @@
     <div th:fragment="navlinks">
         <a href="/">HOME</a> -
         <a href="/cliente">Cliente</a> -
-        <a href="/addfuncionario">Funcionario</a> - 
- 		<a th:href="@{/addfuncionario}">FUNCIONARIO</a>   
+        <a href="/funcionario/addfuncionario">Funcionario</a> - 
+ 		<a th:href="@{/funcionario/addfuncionario}">FUNCIONARIO</a>
+ 		<a th:href="@{/funcionario/showfuncionario}">Listar funcionários</a>
+ 		<a th:href="@{/funcionario/deletefuncionario}">Remover funcionário</a>
+ 		   
     </div>
 	
 	

@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sun.istack.NotNull;
@@ -35,19 +38,21 @@ public class FuncionarioController {
 	private FuncionarioRepository funcionarioRepository;
 	
 
-	@GetMapping(value = "/addfuncionario")
+	@GetMapping(value = "/funcionario/addfuncionario")
 	public String funcionariopage(Funcionario funcionario) { /* problema era a falta do funcionario no parâmetro*/
-		return "/addfuncionario";
+		return "/funcionario/addfuncionario";
 	}
 	
-	
-	@GetMapping("/index")
+	// pega todos os dados referentes a tabela funcionario
+	@GetMapping("/funcionario/showfuncionario")
 	public String showfuncionariolist(Model model) {
 	    model.addAttribute("listfuncionario", funcionarioRepository.findAll());
-	    return "index";
+	    return "/funcionario/showfuncionario";
 	}
 
-	@PostMapping("/addfuncionario")
+	
+	// Adiciona um funcionario
+	@PostMapping("/funcionario/addfuncionario")
     public String addfuncionario(@Valid Funcionario funcionario, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "add-funcionario";
@@ -55,7 +60,7 @@ public class FuncionarioController {
         boolean existeCpf = funcionarioRepository.existsByCpf(funcionario.getCpf());
 
 		if (existeCpf) {
-			return "/index";
+			return "/";
 		}
 		//String salario = funcionario.getSalario();
 		
@@ -63,9 +68,40 @@ public class FuncionarioController {
 
 		funcionarioRepository.save(funcionario);
         
-        return "redirect:/index";
+        return "redirect:/funcionario/showfuncionario";
     }
+	
+	//*problema aqui*/
+	@GetMapping(value ="/funcionario/deletefuncionario/{id}")
+	public String deletefuncionario(@PathVariable(name="id") long id, Model model) {
+		 Funcionario funcionario = funcionarioRepository.findById(id)
+			        .orElseThrow(() -> new IllegalArgumentException("Invalid funcionario Id:" + id));
+		 funcionarioRepository.delete(funcionario);
 
+	    return "redirect:/funcionario/showfuncionario";
+	}
+	
+
+	
+	
+	@PostMapping("/funcionario/updatefuncionario/{id}")
+	public String updatefuncionario(@PathVariable("id") long id, @Valid Funcionario funcionario, 
+	  BindingResult result, Model model) {
+	    if (result.hasErrors()) {
+	        funcionario.setId(id);
+	        return "update-funcionario";
+	    }
+	        
+	    funcionarioRepository.save(funcionario);
+	    return "redirect:/funcionario/showfuncionario";
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

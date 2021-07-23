@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt_br" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remover um FUNCIONÁRIO:</title>
+</head>
+
+<body>
+<div th:replace="base :: navlinks"></div>
+
+<h3>REMOVER UM FUNCIONÁRIO</h3>
+<br>
+<br>
+<br>
+
+<div th:switch="${listfuncionario}">
+    <h2 th:case="null">No funcionario yet!</h2>
+        <div th:case="*">
+            <h2>Funcionários</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>telefone</th>
+                        <th>CPF</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="funcionario : funcionario">
+                    <td th:text="${funcionario.nome}"></td>
+                    <td th:text="${funcionario.telefone}"></td>
+                    <td th:text="${funcionario.cpf}"></td>
+                    <td><a th:href="@{/funcionario/deletefuncionario/${funcionario.id}}">
+                    Remover Funcionário</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>      
+
+</div>
+	
+</body>
+</html>
