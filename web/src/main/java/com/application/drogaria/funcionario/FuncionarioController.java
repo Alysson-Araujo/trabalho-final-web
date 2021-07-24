@@ -39,7 +39,7 @@ public class FuncionarioController {
 	
 
 	@GetMapping(value = "/funcionario/addfuncionario")
-	public String funcionariopage(Funcionario funcionario) { /* problema era a falta do funcionario no parâmetro*/
+	public String funcionariopageadd(Funcionario funcionario) { /* problema era a falta do funcionario no parâmetro*/
 		return "/funcionario/addfuncionario";
 	}
 	
@@ -68,7 +68,7 @@ public class FuncionarioController {
 
 		funcionarioRepository.save(funcionario);
         
-        return "redirect:/funcionario/showfuncionario";
+        return "redirect:/funcionario/addfuncionario";
     }
 	
 	//*problema aqui*/
