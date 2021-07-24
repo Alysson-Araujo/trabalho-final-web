@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sun.istack.NotNull;
@@ -88,19 +89,28 @@ public class FuncionarioController {
 	public String showUpdateFfuncionarioPage(@PathVariable("id") long id, Model model) {
 	    Funcionario funcionario = funcionarioRepository.findById(id)
 	      .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-	    
 	    model.addAttribute("funcionario", funcionario);
 	    return "/funcionario/updatefuncionario";
 	}
+
 	
-	@PostMapping("/updatepost/{id}")
+	@PostMapping(value = "/updatepost/{id}" )
 	public String updatefuncionariopage(@Valid @NotNull @PathVariable long id,
-			 @RequestBody FuncionarioAlterna funcionarioAlterna,  Model model, @Valid Funcionario funcionario) {
+						Model model, @Valid FuncionarioAlterna funcionarioalt, @Valid Funcionario funcio) {
 			
 		
+		System.out.println("####################"+funcio.getCpf()+"####################");
+		
+Optional<Funcionario> funcionarioOpt = funcionarioRepository.findById(id);
+		
+		if(funcionarioOpt.isEmpty()) {
 			return "redirect:/funcionario/showfuncionario";
-		}
-	
+		} else {
+			funcionarioRepository.save(funcio);
+		
+		return "redirect:/funcionario/showfuncionario";
+	}
+	}
 	
 	
 
