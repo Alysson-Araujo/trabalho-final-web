@@ -1,5 +1,5 @@
 package com.application.drogaria.funcionario;
-
+import static javax.swing.JOptionPane.showMessageDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +55,8 @@ public class FuncionarioController {
 	@PostMapping("/funcionario/addfuncionario")
     public String addfuncionario(@Valid Funcionario funcionario, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "add-funcionario";
+        	showMessageDialog(null, "Ocorreu algum problema, tente novamente!");
+            return "/funcionario/addfuncionario";
         }
         boolean existeCpf = funcionarioRepository.existsByCpf(funcionario.getCpf());
 
@@ -82,28 +83,27 @@ public class FuncionarioController {
 	}
 	
 
-	
-	
-	@PostMapping("/funcionario/updatefuncionario/{id}")
-	public String updatefuncionario(@PathVariable("id") long id, @Valid Funcionario funcionario, 
-	  BindingResult result, Model model) {
-	    if (result.hasErrors()) {
-	        funcionario.setId(id);
-	        return "update-funcionario";
-	    }
-	        
-	    funcionarioRepository.save(funcionario);
-	    return "redirect:/funcionario/showfuncionario";
+
+	@GetMapping("/update/{id}")
+	public String showUpdateFfuncionarioPage(@PathVariable("id") long id, Model model) {
+	    Funcionario funcionario = funcionarioRepository.findById(id)
+	      .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+	    
+	    model.addAttribute("funcionario", funcionario);
+	    return "/funcionario/updatefuncionario";
 	}
 	
+	@PostMapping("/updatepost/{id}")
+	public String updatefuncionariopage(@Valid @NotNull @PathVariable long id,
+			 @RequestBody FuncionarioAlterna funcionarioAlterna,  Model model, @Valid Funcionario funcionario) {
+			
+		
+			return "redirect:/funcionario/showfuncionario";
+		}
 	
 	
 	
-	
-	
-	
-	
-	
+
 	
 	
 	/*

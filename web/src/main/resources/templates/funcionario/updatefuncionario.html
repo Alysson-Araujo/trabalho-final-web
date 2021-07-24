@@ -12,16 +12,34 @@
 <body>
 
 <form  
-  th:action="@{/funcionario/updatefuncionario/{id}(id=${funcionario.id})}" 
+  th:action="@{/updatepost/{id}(id=${funcionario.id})}" 
   th:object="${funcionario}" 
   method="post">
     <label for="name">Name</label>
     <input type="text" th:field="*{nome}" id="nome" placeholder="Nome">
     <span th:if="${#fields.hasErrors('nome')}" th:errors="*{name}"></span>
-    <label for="email">CPF</label>
-    <input type="text" th:field="*{cpf}" id="email" placeholder="Email">
+    
+    <br>
+    
+    <label for="email">Email</label>
+    <input type="text" th:field="*{email}" id="email" placeholder="Email">
     <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-    <input type="submit" value="Update funcionario">   
+    
+    <br>
+    
+    <label for="name">telefone</label>
+    <input type="text" th:field="*{telefone}" id="telefone" placeholder="Telefone">
+    <span th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></span>
+    
+    <br>
+    
+    <label for="name">Salário</label>
+    <input type="text" th:field="*{salario}" id="salario" placeholder="Salário">
+    <span th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}"></span>
+    
+    <br>
+    
+    <input type="submit" value="Update funcionario">
 </form>
 
 </body>

@@ -33,7 +33,7 @@
 			<td th:text="${funcionario.cpf}"></td>
 			<td th:text="${funcionario.email}"></td>
 			<td th:text="${funcionario.salario}"></td>
-			<td><a th:href="@{/funcionario/updatefuncionario/{id}(id=${funcionario.id})}">Edit</a></td>
+			<td><a th:href="@{/update/{id}(id=${funcionario.id})}">Edit</a></td>
             <td><a th:href="@{/funcionario/deletefuncionario/{id}(id=${funcionario.id})}">Delete</a></td>
 			</tr>
 		</tbody>
